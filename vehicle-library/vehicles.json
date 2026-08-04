@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "make": "Infiniti",
+    "model": "QX60",
+    "year": 2017,
+    "vehicleType": "SUV",
+    "curbWeightLbs": 4385,
+    "seatingCapacity": 7,
+    "estimatedRangeMiles": 285
+  },
+  {
+    "id": 2,
+    "make": "Ford",
+    "model": "Explorer",
+    "year": 2017,
+    "vehicleType": "SUV",
+    "curbWeightLbs": 4349,
+    "seatingCapacity": 7,
+    "estimatedRangeMiles": 250
+  },
+  {
+    "id": 3,
+    "make": "Honda",
+    "model": "Accord",
+    "year": 2018,
+    "vehicleType": "Sedan",
+    "curbWeightLbs": 3131,
+    "seatingCapacity": 5,
+    "estimatedRangeMiles": 300
+  }
+]

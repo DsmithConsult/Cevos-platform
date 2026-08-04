@@ -1,0 +1,12 @@
+[
+  {
+    "vehicleId": 1,
+    "batteryKWh": 95,
+    "motorKW": 250,
+    "estimatedRangeMiles": 285,
+    "estimatedCostLow": 31000,
+    "estimatedCostHigh": 38000,
+    "confidenceScore": 92,
+    "difficulty": "Medium"
+  }
+]

@@ -1,0 +1,12 @@
+name: Azure Deploy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Placeholder Azure deployment
+        run: echo "Azure deployment workflow scaffold is ready."

@@ -1,0 +1,6 @@
+name: cevos-platform
+services:
+  api:
+    project: ./backend/Cevos.Api
+    language: dotnet
+    host: appservice
