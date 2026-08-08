@@ -1,12 +1,25 @@
-export const vehicles = [
+const vehicles = [
   {
-    id: 1,
-    name: "2017 Infiniti QX60",
-    weight: 4385
+    id: "qx60",
+    year: 2017,
+    make: "Infiniti",
+    model: "QX60",
+    drivetrain: "AWD",
   },
   {
-    id: 2,
-    name: "2016 Ford Explorer",
-    weight: 4349
-  }
+    id: "explorer",
+    year: 2018,
+    make: "Ford",
+    model: "Explorer",
+    drivetrain: "AWD",
+  },
+  {
+    id: "accord",
+    year: 2016,
+    make: "Honda",
+    model: "Accord",
+    drivetrain: "FWD",
+  },
 ];
+
+export default vehicles;

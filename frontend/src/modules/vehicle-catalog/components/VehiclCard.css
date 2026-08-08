@@ -1,0 +1,38 @@
+.vehicle-card {
+  background: #1f2937;
+  color: white;
+  border-radius: 12px;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  margin: 15px;
+  transition: transform 0.2s ease;
+}
+
+.vehicle-card:hover {
+  transform: translateY(-4px);
+}
+
+.vehicle-card h3 {
+  color: #38bdf8;
+  margin-bottom: 10px;
+}
+
+.vehicle-card p {
+  margin: 6px 0;
+}
+
+.vehicle-card button {
+  margin-top: 12px;
+  padding: 10px 16px;
+  background: #38bdf8;
+  color: black;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.vehicle-card button:hover {
+  background: #0ea5e9;
+}
+``

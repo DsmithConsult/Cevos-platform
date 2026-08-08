@@ -1,14 +1,25 @@
-export const motors = [
+const motors = [
   {
-    id: 1,
-    name: "HyperDrive 250",
+    id: "hyperdrive250",
+    name: "Phoenix HyperDrive 250",
     power: 250,
-    cost: 5200
+    torque: 450,
+    cost: 4800,
   },
   {
-    id: 2,
-    name: "HyperDrive 180",
+    id: "hyperdrive180",
+    name: "Phoenix HyperDrive 180",
     power: 180,
-    cost: 3900
-  }
+    torque: 350,
+    cost: 3900,
+  },
+  {
+    id: "hyperdrive300",
+    name: "Phoenix HyperDrive 300",
+    power: 300,
+    torque: 550,
+    cost: 6200,
+  },
 ];
+
+export default motors;
