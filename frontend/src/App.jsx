@@ -291,10 +291,13 @@ const allVehicles = [
           }}
         >
           <h3>
-            {vehicle.year} {vehicle.make} {vehicle.model}
-          </h3>
+  {vehicle.year || "NO YEAR"}{" "}
+  {vehicle.make || "NO MAKE"}{" "}
+  {vehicle.model || "NO MODEL"}
+</h3>
 
-          <p>Drivetrain: {vehicle.drivetrain}</p>
+
+
 
           <button onClick={() => setSelectedVehicle(vehicle)}>
             Select Vehicle
@@ -303,19 +306,67 @@ const allVehicles = [
       ))}
 
       {selectedVehicle && (
-        <>
-          <hr />
+  <>
+    <hr />
 
-          <h2>Selected Vehicle</h2>
+    <h2>Vehicle Intelligence</h2>
 
-          <p>
-            {selectedVehicle.year} {selectedVehicle.make}{" "}
-            {selectedVehicle.model}
-          </p>
+    <p>
+      {selectedVehicle.year} {selectedVehicle.make}{" "}
+      {selectedVehicle.model}
+    </p>
 
-          <h2>Select Battery</h2>
+    <div
+      style={{
+        border: "2px solid #4CAF50",
+        borderRadius: "8px",
+        padding: "1rem",
+        marginBottom: "1rem",
+      }}
+    >
+      <h3>Vehicle Intelligence</h3>
+<p>
+  Drivetrain: {selectedVehicle.drivetrain}
+</p>
+      <p>
+        Battery Packaging Score:{" "}
+        {selectedVehicle.batteryPackagingScore}/10
+      </p>
 
-          {batteries.map((battery) => (
+      <p>
+        Motor Packaging Score:{" "}
+        {selectedVehicle.motorPackagingScore}/10
+      </p>
+
+      <p>
+        Conversion Difficulty:{" "}
+        {selectedVehicle.conversionDifficulty}
+      </p>
+
+      <p>
+        Recommended Battery:{" "}
+        {selectedVehicle.recommendedBattery}
+      </p>
+
+      <p>
+        Recommended Motor:{" "}
+        {selectedVehicle.recommendedMotor}
+      </p>
+
+      <p>
+        Estimated Range:{" "}
+        {selectedVehicle.estimatedRange}
+      </p>
+
+      <p>
+        Suitability Score:{" "}
+        {selectedVehicle.suitabilityScore}/100
+      </p>
+    </div>
+
+    <h2>Select Battery</h2>
+
+    {batteries.map((battery) => (
             <button
               key={battery.id}
               onClick={() => setSelectedBattery(battery)}

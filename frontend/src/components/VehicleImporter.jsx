@@ -21,21 +21,58 @@ export default function VehicleImporter({
         rows[0].split(",");
 
       const vehicles = rows
-        .slice(1)
-        .map((row) => {
+  .slice(1)
+  .filter((row) => row.trim() !== "")
+  .map((row) => {
           const values =
             row.split(",");
 
-          const vehicle = {};
+         const vehicle = {};
 
-          headers.forEach(
-            (header, index) => {
-              vehicle[header] =
-                values[index];
-            }
-          );
+headers.forEach((header, index) => {
+  vehicle[header.trim()] = values[index]?.trim();
+});
 
-          return vehicle;
+const makeModel =
+  vehicle["Make/Model"] || "";
+
+const parts =
+  makeModel.split(" ");
+
+return {
+  id: makeModel
+    .toLowerCase()
+    .replace(/\s+/g, "-"),
+
+  year: vehicle["Year"],
+
+  make: parts[0] || "",
+
+  model: parts.slice(1).join(" ") || "",
+
+  drivetrain: vehicle["Drivetrain"],
+
+  batteryPackagingScore:
+    vehicle["Battery Packaging Score"],
+
+  motorPackagingScore:
+    vehicle["Motor Packaging Score"],
+
+  conversionDifficulty:
+    vehicle["Conversion Difficulty"],
+
+  recommendedBattery:
+    vehicle["Recommended Battery"],
+
+  recommendedMotor:
+    vehicle["Recommended Motor"],
+
+  estimatedRange:
+    vehicle["Estimated Range"],
+
+  suitabilityScore:
+    vehicle["Suitability Score"]
+};
         });
 
       onImport(vehicles);
