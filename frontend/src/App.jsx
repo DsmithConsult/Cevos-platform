@@ -128,7 +128,7 @@ const [importedVehicles, setImportedVehicles] = useState([]);
     setProjects([]);
   };
 const loadDemoBuild = () => {
-  alert("Demo build clicked");
+ 
 
   const demoVehicle = vehicles.find(
     (vehicle) => vehicle.id === "qx60"
@@ -249,24 +249,14 @@ const allVehicles = [
 <VehicleImporter
   onImport={setImportedVehicles}
 />
-{importedVehicles.length > 0 && (
-  <>
-    <h2>Imported Vehicles</h2>
 
-    {importedVehicles.map((vehicle, index) => (
-      <div key={index}>
-        {vehicle.year} {vehicle.make} {vehicle.model}
-      </div>
-    ))}
-  </>
-)}
 {importedVehicles.length > 0 && (
   <>
     <h2>Imported Vehicles</h2>
 
     {importedVehicles.map((vehicle, index) => (
       <div
-        key={index}
+        key={vehicle.id}
         style={{
           border: "1px solid #333",
           padding: "1rem",
@@ -290,10 +280,8 @@ const allVehicles = [
             marginBottom: "1rem",
           }}
         >
-          <h3>
-  {vehicle.year || "NO YEAR"}{" "}
-  {vehicle.make || "NO MAKE"}{" "}
-  {vehicle.model || "NO MODEL"}
+         <h3>
+  {vehicle.year} {vehicle.make} {vehicle.model}
 </h3>
 
 
