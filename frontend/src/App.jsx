@@ -20,6 +20,7 @@ export default function App() {
 
 
 const [importedVehicles, setImportedVehicles] = useState([]);
+const [searchTerm, setSearchTerm] = useState("");
   const [projects, setProjects] = useState(() => {
     const savedProjects = localStorage.getItem("cevos-projects");
     return savedProjects ? JSON.parse(savedProjects) : [];
@@ -60,7 +61,26 @@ const [importedVehicles, setImportedVehicles] = useState([]);
     selectedVehicle && selectedBattery && selectedMotor
       ? 85
       : 0;
+const compatibilityScore =
+  selectedVehicle &&
+  selectedBattery &&
+  selectedMotor
+    ? Math.min(
+        100,
+        Number(selectedVehicle.suitabilityScore || 50) +
+          (selectedMotor.power >= 250 ? 10 : 0)
+      )
+    : 0;
 
+const compatibilityRating =
+  compatibilityScore >= 90
+    ? "🟢 Excellent Match"
+    : compatibilityScore >= 75
+    ? "🟡 Good Match"
+    : compatibilityScore >= 50
+    ? "🟠 Moderate Match"
+    : "🔴 Poor Match";
+  
   const recommendations = [];
 
   if (selectedBattery?.capacity <= 100) {
@@ -229,6 +249,12 @@ const allVehicles = [
   ...vehicles,
   ...importedVehicles,
 ];
+const filteredVehicles = allVehicles.filter(
+  (vehicle) =>
+    `${vehicle.year} ${vehicle.make} ${vehicle.model}`
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase())
+);
   return (
     <div className="container">
       <h1>CEVOS Build Designer</h1>
@@ -250,27 +276,26 @@ const allVehicles = [
   onImport={setImportedVehicles}
 />
 
-{importedVehicles.length > 0 && (
-  <>
-    <h2>Imported Vehicles</h2>
 
-    {importedVehicles.map((vehicle, index) => (
-      <div
-        key={vehicle.id}
-        style={{
-          border: "1px solid #333",
-          padding: "1rem",
-          marginBottom: "1rem",
-        }}
-      >
-        {vehicle.year} {vehicle.make} {vehicle.model}
-      </div>
-    ))}
-  </>
-)}
-      <h2>Select Vehicle</h2>
+<h2>Vehicle Search</h2>
 
-      {allVehicles.map((vehicle) => (
+<input
+  type="text"
+  placeholder="Search by make, model, or year..."
+  value={searchTerm}
+  onChange={(e) => setSearchTerm(e.target.value)}
+  style={{
+    width: "100%",
+    padding: "10px",
+    marginBottom: "20px",
+    borderRadius: "6px",
+  }}
+/><p>
+  Showing {filteredVehicles.length} vehicles
+</p>
+      <h2>Vehicle Library</h2>
+
+      {filteredVehicles.map((vehicle) => (
         <div
           key={vehicle.id}
           style={{
@@ -280,6 +305,7 @@ const allVehicles = [
             marginBottom: "1rem",
           }}
         >
+          
          <h3>
   {vehicle.year} {vehicle.make} {vehicle.model}
 </h3>
@@ -387,7 +413,27 @@ const allVehicles = [
       {selectedVehicle && selectedBattery && selectedMotor && (
         <>
           <hr />
+<div
+  style={{
+    backgroundColor:
+      compatibilityScore >= 90
+        ? "#16a34a"
+        : compatibilityScore >= 75
+        ? "#eab308"
+        : "#dc2626",
+    color: "white",
+    padding: "12px",
+    borderRadius: "8px",
+    fontWeight: "bold",
+    marginBottom: "1rem",
+  }}
+>
+  Compatibility Score: {compatibilityScore}/100
 
+  <br />
+
+  {compatibilityRating}
+</div>
           <BuildSummary
   selectedVehicle={selectedVehicle}
   selectedBattery={selectedBattery}
