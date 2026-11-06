@@ -126,8 +126,8 @@ cevos-platform/
 
 ## Development Roadmap
 
-- Current release: v0.2.0
-- Next target: v0.3, focused on expanded engineering analysis and design guidance
+- Current release: v0.3.0
+- Next target: v0.4, scope to be determined
 - Detailed milestones: [ROADMAP.md](ROADMAP.md)
 
 ---
@@ -162,9 +162,9 @@ Together we can create an open platform that enables anyone to design, simulate,
 
 **Project Status:** Prototype
 
-**Current Release:** v0.2.0
+**Current Release:** v0.3.0
 
-**Next Target:** v0.3
+**Next Target:** v0.4 (scope to be determined)
 
 **Project Type:** Open Source
 

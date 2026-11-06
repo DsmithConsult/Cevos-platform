@@ -6,7 +6,9 @@ The format is based on Keep a Changelog and follows Semantic Versioning principl
 
 ---
 
-## [Unreleased]
+# [Unreleased]
+
+# [0.3.0] - 2026-11-06
 
 ### Added
 
