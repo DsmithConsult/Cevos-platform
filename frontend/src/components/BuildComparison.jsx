@@ -37,17 +37,6 @@ else score2++;
 if (higherTorque === 1) score1++;
 else score2++;
 
-if (
-  build1.readinessScore >
-  build2.readinessScore
-) {
-  score1++;
-} else if (
-  build2.readinessScore >
-  build1.readinessScore
-) {
-  score2++;
-}
 const winner =
   score1 > score2
     ? build1
@@ -250,9 +239,9 @@ Score: {score1} - {score2}
   </td>
 </tr>
           <tr>
-  <td>Readiness</td>
-  <td>{build1.readinessScore}/100</td>
-  <td>{build2.readinessScore}/100</td>
+            <td>Engineering readiness</td>
+            <td>Not assessed</td>
+            <td>Not assessed</td>
 </tr>
         </tbody>
       </table>

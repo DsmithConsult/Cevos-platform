@@ -1,4 +1,5 @@
 using Cevos.Api.Data;
+using Cevos.Api.Endpoints;
 using Cevos.Api.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApi();
 builder.Services.AddSingleton<CatalogDataStore>();
+builder.Services.AddSingleton<CatalogDatabaseStore>();
+builder.Services.AddSingleton<IProjectRepository, InMemoryProjectRepository>();
 
 builder.Services.AddCors(options =>
 {
@@ -26,14 +29,15 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors();
 app.MapGet("/health", () => Results.Ok(new { status = "ok" }));
+app.MapProjectEndpoints();
 
-app.MapGet("/api/vehicles", async (CatalogDataStore store, string? search, string? vehicleType, int page = 1, int pageSize = 20) =>
+app.MapGet("/api/vehicles", async (CatalogDatabaseStore store, string? search, string? vehicleType, int page = 1, int pageSize = 20) =>
 {
     var vehicles = await store.GetVehiclesAsync(search, vehicleType, page, pageSize);
     return Results.Ok(vehicles);
 });
 
-app.MapGet("/api/vehicles/{id:int}", async (int id, CatalogDataStore store) =>
+app.MapGet("/api/vehicles/{id:int}", async (int id, CatalogDatabaseStore store) =>
 {
     var vehicle = await store.GetVehicleByIdAsync(id);
     return vehicle is null ? Results.NotFound() : Results.Ok(vehicle);
@@ -52,3 +56,5 @@ app.MapGet("/api/motors", async (CatalogDataStore store) =>
 });
 
 app.Run();
+
+public partial class Program;

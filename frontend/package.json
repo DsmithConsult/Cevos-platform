@@ -1,10 +1,12 @@
 {
   "name": "cevos-frontend",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "test": "node --test src/services/compatibility.test.js && vitest run src/App.smoke.test.jsx"
   },
   "dependencies": {
     "jspdf": "^4.2.1",
@@ -12,7 +14,10 @@
     "react-dom": "^18.3.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "^4.3.1",
-    "vite": "^5.4.0"
+    "@testing-library/react": "^16.3.3",
+    "@vitejs/plugin-react": "^4.7.0",
+    "jsdom": "^25.0.1",
+    "vite": "^6.4.5",
+    "vitest": "^5.1.0"
   }
 }

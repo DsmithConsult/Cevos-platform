@@ -6,27 +6,25 @@ The format is based on Keep a Changelog and follows Semantic Versioning principl
 
 ---
 
-# [Unreleased]
+# [0.2.0] - 2026-11-06
 
-## Planned
+## Added
 
-### Added
+- Web-based build designer with a searchable vehicle catalog and QX60 demo build
+- Battery and motor configuration with range and cost estimates, preliminary compatibility screening, and bills of materials
+- Browser-local project save, reload, and comparison workflows
+- Vehicle catalog API with a local catalog fallback
+- PDF conversion report exports
 
-- Interactive 3D vehicle visualization
-- AI Engineering Advisor
-- Vehicle fitment engine
-- Battery placement designer
-- Wiring diagram generator
-- PDF report exports
+## Changed
 
-### Changed
+- Load PDF generation on demand to reduce the initial app bundle
+- Upgrade frontend build and test tooling to patched Vite and Vitest versions
+- Expand and reorganize structured vehicle catalog data
 
-- Improve simulation accuracy
-- Expand vehicle database schema
+## Fixed
 
-### Fixed
-
-- Future fixes tracked as development progresses
+- Prevent the demo and powertrain selection workflow from blanking the page
 
 ---
 

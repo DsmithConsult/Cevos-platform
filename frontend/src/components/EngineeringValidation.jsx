@@ -1,27 +1,11 @@
-export default function EngineeringValidation({
-  batteryWarning,
-  powerToWeight,
-  readinessScore,
-}) {
+export default function EngineeringValidation({ assessment }) {
+  const notAssessed = assessment?.notAssessed || [];
+
   return (
     <>
-      <h2>Engineering Validation</h2>
-
-      <p>{batteryWarning}</p>
-
-      <p>
-        <strong>Estimated Vehicle Weight:</strong> 5,150 lbs
-      </p>
-
-      <p>
-        <strong>Power-to-Weight Ratio:</strong>{" "}
-        {powerToWeight} kW/lb
-      </p>
-
-      <p>
-        <strong>Build Readiness Score:</strong>{" "}
-        {readinessScore}/100
-      </p>
+      <h2>Engineering Checks Not Assessed</h2>
+      <p>{assessment?.disclaimer || "Preliminary screening only. This is not engineering validation or approval."}</p>
+      <ul>{notAssessed.map((item) => <li key={item}>{item}</li>)}</ul>
     </>
   );
 }

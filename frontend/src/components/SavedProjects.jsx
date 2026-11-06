@@ -1,6 +1,9 @@
 export default function SavedProjects({
   projects,
   clearProjects,
+  onLoadProject,
+  onDeleteProject,
+  onEditProject,
 }) {
   return (
     <>
@@ -13,6 +16,7 @@ export default function SavedProjects({
         style={{
           marginBottom: "20px",
           padding: "8px 12px",
+          marginRight: "10px",
         }}
       >
         Clear Projects
@@ -31,24 +35,30 @@ export default function SavedProjects({
           <h3>{project.name}</h3>
 
           <p>
-            <strong>Battery:</strong>{" "}
-            {project.battery}
+            <strong>Status:</strong> {project.status || "Draft"}
           </p>
 
           <p>
-            <strong>Motor:</strong>{" "}
-            {project.motor}
+            <strong>Battery:</strong> {project.battery}
           </p>
 
           <p>
-            <strong>Range:</strong>{" "}
-            {project.range} miles
+            <strong>Motor:</strong> {project.motor}
           </p>
 
           <p>
-            <strong>Cost:</strong> $
-            {project.cost.toLocaleString()}
+            <strong>Range:</strong> {project.range} miles
           </p>
+
+          <p>
+            <strong>Cost:</strong> ${project.cost.toLocaleString()}
+          </p>
+
+          <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+            <button onClick={() => onLoadProject(project)}>Load</button>
+            <button onClick={() => onEditProject(project)}>Edit</button>
+            <button onClick={() => onDeleteProject(project.id)}>Delete</button>
+          </div>
         </div>
       ))}
     </>

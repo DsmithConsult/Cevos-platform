@@ -1,0 +1,13 @@
+{
+  "id": "infiniti-qx60-2017",
+  "make": "Infiniti",
+  "model": "QX60",
+  "year": 2017,
+  "bodyStyle": "Mid-Size Luxury SUV",
+  "drivetrain": "AWD",
+  "curbWeightLbs": 4420,
+  "payloadCapacityLbs": 1450,
+  "wheelbaseIn": 114.2,
+  "cargoVolumeFt3": 16.0,
+  "notes": "Reference vehicle for CEVOS prototype conversion."
+}

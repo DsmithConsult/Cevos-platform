@@ -3,7 +3,7 @@ export default function EngineeringRecommendations({
 }) {
   return (
     <>
-      <h2>Engineering Recommendations</h2>
+      <h2>Conversion Recommendations</h2>
 
       <ul>
        {recommendations.map((item, index) => (

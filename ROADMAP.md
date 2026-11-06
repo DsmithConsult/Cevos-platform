@@ -10,9 +10,9 @@ This roadmap outlines the planned evolution of CEVOS from a vehicle conversion p
 
 # Project Status
 
-**Current Phase:** Concept / Prototype
+**Current Phase:** Core Platform
 
-**Current Version:** v0.1
+**Current Version:** v0.2.0
 
 **Primary Prototype Vehicle:** Infiniti QX60 (2017)
 

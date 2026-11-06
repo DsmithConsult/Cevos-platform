@@ -74,7 +74,17 @@ public class Project
 {
     public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
-    public int VehicleId { get; set; }
-    public int BatteryId { get; set; }
-    public int MotorId { get; set; }
+    public string Status { get; set; } = "Draft";
+    public string VehicleId { get; set; } = string.Empty;
+    public string BatteryId { get; set; } = string.Empty;
+    public string MotorId { get; set; } = string.Empty;
+    public int? Range { get; set; }
+    public decimal? Cost { get; set; }
+    public string? Battery { get; set; }
+    public string? Motor { get; set; }
+    public int? Power { get; set; }
+    public int? Torque { get; set; }
+    public int? ReadinessScore { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+    public DateTimeOffset UpdatedAt { get; set; }
 }

@@ -3,9 +3,9 @@
 
 **Affordable • Modular • Open Source**
 
-CEVOS is an open-source platform for designing, simulating, documenting, and sharing electric vehicle conversion projects.
+CEVOS is an open-source prototype for planning electric vehicle conversions.
 
-The goal of CEVOS is to make EV conversions more accessible by providing a unified engineering workspace that combines vehicle data, component libraries, simulation tools, AI guidance, and community collaboration.
+The current web app brings vehicle data, powertrain selection, preliminary screening, planning estimates, and project reports into one workflow. The longer-term vision is a collaborative engineering workspace; not all planned capabilities are implemented yet.
 
 ---
 
@@ -15,16 +15,13 @@ Converting a vehicle to electric power often requires information scattered acro
 
 CEVOS brings these tools together into a single platform.
 
-Users can:
+The current prototype lets users:
 
-- Select a donor vehicle
-- Choose batteries, motors, and supporting components
-- Visualize component placement
-- Estimate range and performance
-- Calculate weight distribution
-- Generate bills of materials
-- Export project documentation
-- Share community-validated conversions
+- Browse or search donor vehicles and load an Infiniti QX60 demo build
+- Select a battery pack and motor
+- Review preliminary compatibility findings and planning estimates
+- Generate a bill of materials and PDF conversion report
+- Save, reload, and compare builds in the current browser
 
 ---
 
@@ -66,104 +63,33 @@ Create a shared knowledge base of proven EV conversion designs.
 | Estimated Range | 285 Miles |
 | 0-60 MPH | 5.6 Seconds |
 
----
+### Engineering Guidance Limitations
 
-## Planned Features
-
-### Vehicle Library
-
-Maintain a growing catalog of donor vehicles.
-
-Examples:
-
-- Infiniti QX60
-- Ford Explorer
-- Honda Accord
-- Subaru Outback
-- Chevrolet Tahoe
+CEVOS compatibility guidance is preliminary rule-based screening, not engineering validation or approval. Physical fitment, voltage/current compatibility, axle loads, thermal capacity, structural mounting, and wiring integration are not assessed. Range and cost values are estimates based on limited assumptions. Have a qualified engineer review vehicle-specific measurements and component specifications before purchasing parts or beginning fabrication.
 
 ---
 
-### Component Library
+## Future Roadmap
 
-Manage reusable EV components.
+Planned capabilities include physical fitment and weight-distribution analysis, interactive 3D packaging, deeper simulation, AI-supported recommendations, wiring diagrams, and shared project storage. See [ROADMAP.md](ROADMAP.md) for milestones and scope.
 
-Examples:
+## Run Locally
 
-- Motors
-- Battery Packs
-- Inverters
-- Chargers
-- BMS Systems
-- Cooling Systems
-- Wiring Harnesses
+```bash
+cd frontend
+npm ci
+npm run dev -- --host 0.0.0.0
+```
 
----
+Run the frontend checks with `npm test` and create a production build with `npm run build`.
 
-### EV Configuration Engine
+The frontend requests the vehicle catalog from `http://localhost:5000/api` by default. Override this with `VITE_API_URL`; if the API is unavailable, the app uses its local vehicle catalog.
 
-Design custom vehicle conversions and evaluate compatibility.
+## Data and Storage
 
-Features:
-
-- Component selection
-- Packaging validation
-- Weight modeling
-- Cost estimation
-- Performance prediction
-
----
-
-### 3D Visualization
-
-Interactive vehicle visualization including:
-
-- Transparent chassis view
-- Battery placement
-- Motor location
-- Wiring routes
-- Cooling systems
-- Exploded assemblies
-
----
-
-### Simulation Tools
-
-Evaluate conversion performance.
-
-Modules include:
-
-- Range estimation
-- Weight distribution
-- Thermal analysis
-- Power consumption
-- Regenerative braking simulation
-
----
-
-### AI Engineering Advisor
-
-Provide intelligent design recommendations.
-
-Examples:
-
-- Packaging fitment validation
-- Battery sizing suggestions
-- Weight distribution warnings
-- Cost optimization recommendations
-- Build readiness scoring
-
----
-
-### Reporting
-
-Generate project documentation including:
-
-- PDF reports
-- Bills of Materials (BOM)
-- Wiring diagrams
-- Cost summaries
-- Engineering review reports
+- Saved projects are stored in the browser's local storage. They are not shared across browsers or devices.
+- The backend currently uses an in-memory project repository. The PostgreSQL migration is not yet wired to project CRUD, so it does not provide durable backend storage.
+- Range, cost, and compatibility results are planning estimates, not engineering validation. See the limitations below before relying on them.
 
 ---
 
@@ -171,71 +97,33 @@ Generate project documentation including:
 
 ```text
 cevos-platform/
-│
-├── docs/
-├── frontend/
 ├── backend/
-├── simulator/
-├── vehicle-library/
-├── ai/
-├── assets/
-└── cad/
+├── data/
+├── database/
+├── docs/
+├── engineering-engine/
+└── frontend/
 ```
 
 ### Frontend
 
-- React
-- TypeScript
-- Three.js
-- TailwindCSS
+- React 18 and Vite
+- JSX and CSS, with TypeScript service and type modules
+- jsPDF for report exports
 
 ### Backend
 
-- .NET Web API
-- PostgreSQL
-
-### AI
-
-- Azure OpenAI
-- Engineering recommendation engine
-
-### Visualization
-
-- Three.js
-- GLTF vehicle models
+- .NET 9 Web API
+- Catalog API with local frontend fallback
+- In-memory project repository; PostgreSQL persistence is not integrated yet
 
 ---
 
 ## Development Roadmap
 
-### Version 0.1
-
-- Vehicle database
-- Component database
-- Cost estimator
-- Range calculator
-- Infiniti QX60 prototype
-
-### Version 0.2
-
-- Interactive 3D viewer
-- Weight distribution engine
-- BOM generation
-- PDF exports
-
-### Version 0.3
-
-- AI Engineering Advisor
-- Wiring layout generation
-- Thermal simulation
-- Design validation tools
-
-### Version 1.0
-
-- Community repository
-- Shared conversion templates
-- Marketplace integrations
-- Fleet electrification planning
+- Current release: v0.2.0
+- Next target: v0.3, focused on expanded engineering analysis and design guidance
+- Detailed milestones: [ROADMAP.md](ROADMAP.md)
 
 ---
 
@@ -267,13 +155,15 @@ Together we can create an open platform that enables anyone to design, simulate,
 
 ## Status
 
-**Project Status:** Concept / Prototype Phase
+**Project Status:** Prototype
 
-**Current Release:** v0.1
+**Current Release:** v0.2.0
+
+**Next Target:** v0.3
 
 **Project Type:** Open Source
 
-**License:** MIT (Proposed)
+**License:** MIT
 
 ---
 

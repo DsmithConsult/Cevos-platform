@@ -4,9 +4,15 @@ export default function ConversionReport({
   selectedMotor,
   estimatedRange,
   estimatedCost,
-  readinessScore,
-  compatibility,
+  assessment,
 }) {
+  const currentAssessment = assessment || {
+    label: "Incomplete configuration",
+    disclaimer: "Preliminary screening only. This is not engineering validation or approval.",
+    findings: [],
+    notAssessed: [],
+  };
+
   return (
     <>
       <h2>Conversion Report</h2>
@@ -49,13 +55,14 @@ export default function ConversionReport({
 
         <hr />
 
-        <h4>Engineering Review</h4>
+        <h4>Preliminary Review: {currentAssessment.label}</h4>
 
-        <p>Compatibility: {compatibility}</p>
-
-        <p>
-          Build Readiness: {readinessScore}/100
-        </p>
+        <p>{currentAssessment.disclaimer}</p>
+        <ul>
+          {[...currentAssessment.findings, ...currentAssessment.notAssessed.map((item) => `Not assessed: ${item}`)].map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
 
         <hr />
 
