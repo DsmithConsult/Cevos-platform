@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Conversion component",
+  "type": "object",
+  "required": ["id", "name", "weightLb", "weightSourceUrl"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "weightLb": {
+      "oneOf": [
+        {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Verified component mass in pounds, or null when no sourced value is available."
+    },
+    "weightSourceUrl": {
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Manufacturer or other authoritative source for weightLb; null when weightLb is unknown."
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "weightLb": {
+            "type": "number"
+          }
+        },
+        "required": ["weightLb"]
+      },
+      "then": {
+        "properties": {
+          "weightSourceUrl": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://"
+          }
+        }
+      }
+    }
+  ],
+  "additionalProperties": true
+}

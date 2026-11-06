@@ -27,7 +27,9 @@ test("returns incomplete status when a required selection is missing", () => {
   assert.ok(assessment.findings.includes(
     "Select a vehicle, battery, and motor to run preliminary screening."
   ));
+  assert.ok(assessment.basis.some((item) => /requires a selected vehicle/.test(item)));
   assert.ok(assessment.notAssessed.includes("Physical component fitment and clearances"));
+  assert.ok(assessment.nextSteps.some((step) => /manufacturer datasheets/.test(step)));
   assert.equal("score" in assessment, false);
   assert.equal("score" in getCompatibilityAssessment(vehicle, battery, motor), false);
 });
@@ -38,9 +40,11 @@ test("returns existing heuristic warnings as preliminary findings", () => {
   const assessment = getCompatibilityAssessment(vehicle, undersizedBattery, underpoweredMotor);
 
   assert.equal(assessment.status, "preliminary");
-  assert.equal(assessment.label, "Preliminary screening");
-  assert.ok(assessment.findings.includes("Battery may be undersized for the selected vehicle."));
-  assert.ok(assessment.findings.includes("Motor is underpowered for AWD drivetrain requirements."));
+  assert.equal(assessment.label, "Preliminary review required");
+  assert.ok(assessment.findings.some((finding) => /below the 95 kWh suv rule-of-thumb reference/.test(finding)));
+  assert.ok(assessment.findings.some((finding) => /below the 250 kW AWD rule-of-thumb reference/.test(finding)));
+  assert.ok(assessment.basis.some((item) => /not manufacturer specifications/.test(item)));
+  assert.ok(assessment.nextSteps.length > 0);
   assert.match(assessment.disclaimer, /not engineering validation/i);
   assert.equal("score" in assessment, false);
 });
@@ -50,12 +54,32 @@ test("does not imply validation when no heuristic warning is triggered", () => {
 
   assert.equal(assessment.status, "preliminary");
   assert.deepEqual(assessment.findings, [
-    "No preliminary rule-based warnings were triggered by the available inputs."
+    "No warnings were triggered by the limited rule-of-thumb checks; this does not establish compatibility."
   ]);
+  assert.equal(assessment.basis.length, 3);
   assert.match(assessment.disclaimer, /not engineering validation/i);
   assert.equal(assessment.notAssessed.length, 6);
   assert.equal(getProjectWorkflowStatus(assessment), "Draft - Needs Review");
   assert.equal(getProjectWorkflowStatus(assessment, "Ready for Review"), "Ready for Review");
+});
+
+test("unknown vehicle types do not receive a fallback battery sizing rule", () => {
+  const assessment = getCompatibilityAssessment(
+    { vehicleType: "Coupe", drivetrain: "RWD" },
+    battery,
+    motor,
+  );
+
+  assert.ok(assessment.findings.some((finding) => /No battery-capacity rule/.test(finding)));
+  assert.ok(assessment.basis.some((item) => /Motor power rule-of-thumb reference/.test(item)));
+});
+
+test("invalid specification values are called out instead of receiving fallback scores", () => {
+  const assessment = getCompatibilityAssessment(vehicle, { capacity: 0 }, { power: NaN });
+
+  assert.ok(assessment.findings.some((finding) => /positive number of kWh/.test(finding)));
+  assert.ok(assessment.findings.some((finding) => /positive number of kW/.test(finding)));
+  assert.ok(assessment.basis.some((item) => /screening unavailable/.test(item)));
 });
 
 test("incomplete assessments remain incomplete unless manually overridden", () => {

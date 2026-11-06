@@ -6,6 +6,21 @@ The format is based on Keep a Changelog and follows Semantic Versioning principl
 
 ---
 
+## [Unreleased]
+
+### Added
+
+- Input-based static axle-load estimates with saved measurements and component weights
+- Additional added/removed component entries with source URLs and longitudinal positions
+- Conversion reports with estimate assumptions, screening basis, next steps, and page numbers
+
+### Changed
+
+- Compatibility guidance now explains rule-of-thumb references and avoids implying validation
+- CI uses Node.js 24-compatible GitHub Actions
+
+---
+
 # [0.2.0] - 2026-11-06
 
 ## Added

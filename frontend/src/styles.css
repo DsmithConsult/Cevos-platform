@@ -15,6 +15,86 @@ body {
   color: white;
 }
 
+.weight-balance-analysis {
+  background: #1f2937;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  margin: 24px 0;
+  padding: 20px;
+}
+
+.weight-balance-analysis h2,
+.weight-balance-analysis > p:first-of-type {
+  margin-top: 0;
+}
+
+.weight-balance-fields {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  margin: 20px 0;
+}
+
+.weight-balance-fields label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+  gap: 4px;
+}
+
+.weight-balance-fields input {
+  box-sizing: border-box;
+  margin: 4px 0;
+}
+
+.weight-balance-fields span,
+.weight-balance-disclaimer {
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.weight-balance-results {
+  background: #0f172a;
+  border-radius: 8px;
+  margin-top: 20px;
+  padding: 16px;
+}
+
+.weight-balance-results h3 {
+  margin-top: 0;
+}
+
+.weight-balance-component {
+  border: 1px solid #475569;
+  border-radius: 8px;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin: 16px 0;
+  padding: 16px;
+}
+
+.weight-balance-component legend {
+  color: #bae6fd;
+  font-weight: 700;
+  padding: 0 8px;
+}
+
+.weight-balance-component label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.weight-balance-component input,
+.weight-balance-component select {
+  box-sizing: border-box;
+  margin: 4px 0;
+  width: 100%;
+}
+
 .container {
   max-width: 1100px;
   margin: auto;

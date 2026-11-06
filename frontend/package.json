@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "test": "node --test src/services/compatibility.test.js && vitest run src/App.smoke.test.jsx"
+    "test": "node --test src/services/compatibility.test.js src/services/weightBalance.test.js src/data/componentData.test.js src/services/conversionReport.test.js && vitest run src/App.smoke.test.jsx"
   },
   "dependencies": {
     "jspdf": "^4.2.1",

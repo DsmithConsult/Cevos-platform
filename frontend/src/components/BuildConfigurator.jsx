@@ -5,6 +5,7 @@ import ConversionReport from "./ConversionReport";
 import BillofMaterials from "./BillofMaterials";
 import ConversionCostEstimator from "./ConversionCostEstimator";
 import CostOptimizationEngine from "./CostOptimizationEngine";
+import WeightBalanceAnalysis from "./WeightBalanceAnalysis";
 
 export default function BuildConfigurator({ build, vehicles, onExport, onSave, onReset }) {
   if (!build.selectedVehicle) return null;
@@ -23,8 +24,9 @@ export default function BuildConfigurator({ build, vehicles, onExport, onSave, o
         <ConversionCostEstimator battery={build.selectedBattery} motor={build.selectedMotor} estimatedRange={build.estimatedRange} />
         <CostOptimizationEngine selectedVehicle={build.selectedVehicle} selectedBattery={build.selectedBattery} selectedMotor={build.selectedMotor} estimatedCost={build.estimatedCost} estimatedRange={build.estimatedRange} vehicles={vehicles} />
         <hr /><EngineeringValidation assessment={build.compatibilityAssessment} />
+        <hr /><WeightBalanceAnalysis inputs={build.weightBalanceInputs} onChange={build.updateWeightBalanceInput} estimate={build.weightBalanceEstimate} battery={build.selectedBattery} motor={build.selectedMotor} />
         <hr /><EngineeringRecommendations recommendations={build.recommendations} />
-        <hr /><ConversionReport selectedVehicle={build.selectedVehicle} selectedBattery={build.selectedBattery} selectedMotor={build.selectedMotor} estimatedRange={build.estimatedRange} estimatedCost={build.estimatedCost} assessment={build.compatibilityAssessment} />
+        <hr /><ConversionReport projectName={build.currentBuild.name} projectStatus={build.buildStatus} selectedVehicle={build.selectedVehicle} selectedBattery={build.selectedBattery} selectedMotor={build.selectedMotor} estimatedRange={build.estimatedRange} estimatedCost={build.estimatedCost} assessment={build.compatibilityAssessment} weightBalanceInputs={build.weightBalanceInputs} weightBalanceEstimate={build.weightBalanceEstimate} bom={build.bom} />
         <hr /><BillofMaterials bom={build.bom} />
         <button onClick={onExport}>Export PDF Report</button><button onClick={onSave}>{build.editingProjectId ? "Update Project" : "Save Project"}</button><button onClick={onReset}>New Project</button>
       </>}

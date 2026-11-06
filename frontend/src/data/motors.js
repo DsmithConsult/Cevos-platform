@@ -5,6 +5,8 @@ const motors = [
     power: 250,
     torque: 450,
     cost: 4800,
+    weightLb: null,
+    weightSourceUrl: null,
   },
   {
     id: "hyperdrive180",
@@ -12,6 +14,8 @@ const motors = [
     power: 180,
     torque: 350,
     cost: 3900,
+    weightLb: null,
+    weightSourceUrl: null,
   },
   {
     id: "hyperdrive300",
@@ -19,6 +23,8 @@ const motors = [
     power: 300,
     torque: 550,
     cost: 6200,
+    weightLb: null,
+    weightSourceUrl: null,
   },
 ];
 

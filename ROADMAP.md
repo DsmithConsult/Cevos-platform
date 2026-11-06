@@ -109,7 +109,12 @@ Grow the platform into a collaborative open-source ecosystem.
 - Basic simulation calculators and configuration tools
 
 ## v0.3
-- Expanded engineering analysis and reporting
+- Input-based static weight-balance planning with explicit measurement and safety limitations
+- User-entered added/removed conversion component weights and locations in weight-balance estimates
+- Sourced component mass metadata for weight-balance estimates
+- Reports that disclose estimates, assumptions, weight-balance inputs/results, and screening limitations
+- Actionable engineering-advisor screening with visible rule basis and next steps
+- Expanded engineering analysis
 - Improved AI-supported design guidance
 
 ## v1.0

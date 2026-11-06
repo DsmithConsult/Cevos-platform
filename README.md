@@ -20,7 +20,9 @@ The current prototype lets users:
 - Browse or search donor vehicles and load an Infiniti QX60 demo build
 - Select a battery pack and motor
 - Review preliminary compatibility findings and planning estimates
-- Generate a bill of materials and PDF conversion report
+- Follow transparent rule-of-thumb screening with explicit next steps and engineering review limitations
+- Enter measured vehicle and component data, including additional added/removed parts, for a preliminary static axle-load estimate
+- Generate a bill of materials and PDF conversion report with estimate assumptions, weight-balance inputs/results, and preliminary review limitations
 - Save, reload, and compare builds in the current browser
 
 ---
@@ -90,6 +92,9 @@ The frontend requests the vehicle catalog from `http://localhost:5000/api` by de
 - Saved projects are stored in the browser's local storage. They are not shared across browsers or devices.
 - The backend currently uses an in-memory project repository. The PostgreSQL migration is not yet wired to project CRUD, so it does not provide durable backend storage.
 - Range, cost, and compatibility results are planning estimates, not engineering validation. See the limitations below before relying on them.
+- Compatibility heuristics are coarse project references, not manufacturer data or validated engineering limits. A lack of triggered warnings does not establish compatibility; use the screening basis and next steps to gather vehicle-specific measurements and supplier specifications.
+- Weight-balance planning requires user-entered scale measurements, wheelbase, and component masses/locations. Additional added/removed parts can be listed individually. Its static two-axle estimate excludes unlisted parts, occupants, axle ratings, suspension, and dynamic loading; it is not a safe-load determination.
+- Battery and motor mass metadata uses `weightLb` and `weightSourceUrl` as defined in [data/component.schema.json](data/component.schema.json). Unknown catalog weights remain `null`; a mass is only prefilled when a positive value has an HTTPS source. Users can record optional weight-source URLs with manual inputs; those links are not independently verified.
 
 ---
 
